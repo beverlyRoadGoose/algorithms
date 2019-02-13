@@ -11,8 +11,9 @@ matrix:
         - MATRIX_EVAL="brew install gcc && CC=gcc-6 && CXX=g++-6"
 
 before_install:
-  - eval "${MATRIX_EVAL}"
+  - brew update && brew upgrade
   - brew uninstall --force cmake
+  - eval "${MATRIX_EVAL}"
   - export CMAKE_EXTRA_ARGS="${CMAKE_EXTRA_ARGS} -DCMAKE_BUILD_TYPE=Coverage"
 
 install:
