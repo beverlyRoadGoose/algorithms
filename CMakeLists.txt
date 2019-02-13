@@ -31,9 +31,12 @@ target_link_libraries(app algorithms)
 ###############################################################################
 
 # coverage
+
+enable_testing()
+
 SET(CMAKE_CXX_FLAGS="-g -O0 -Wall -W -Wshadow -Wunused-variable -Wunused-parameter -Wunused-function -Wunused -Wno-system-headers -Wno-deprecated -Woverloaded-virtual -Wwrite-strings -fprofile-arcs -ftest-coverage")
 SET(CMAKE_C_FLAGS="-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
-SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
+SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage -lgcov")
 
 if($ENV{TRAVIS})
   if($ENV{TRAVIS} STREQUAL "true")
@@ -42,7 +45,6 @@ if($ENV{TRAVIS})
   endif()
 endif()
 
-enable_testing()
 
 if(NOT TARGET Catch)
   include(ExternalProject)
@@ -67,9 +69,9 @@ if(NOT TARGET Catch)
 endif()
 
 add_executable(node-tests tests/models/NodeTests.cpp)
-target_link_libraries(node-tests algorithms Catch)
+target_link_libraries(node-tests algorithms Catch gcov)
 add_test(NAME NodeTests COMMAND node-tests)
 
 add_executable(binary-search-tests tests/search/BinarySearchTests.cpp)
-target_link_libraries(binary-search-tests algorithms Catch)
+target_link_libraries(binary-search-tests algorithms Catch gcov)
 add_test(NAME BinarySearchTests COMMAND binary-search-tests)
