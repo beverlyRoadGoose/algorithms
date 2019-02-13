@@ -3,6 +3,8 @@ language: cpp
 compiler:
   - gcc
 
+cache: pip
+
 matrix:
   include:
     - os: osx
