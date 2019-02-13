@@ -20,6 +20,7 @@ install:
   - brew install cmake
   - brew update
   - pip install cpp-coveralls
+  - pip install pyyaml
 
 branches:
   except:
