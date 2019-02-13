@@ -17,7 +17,7 @@ Node<T>::Node(T data, Node<T> * nextNode) {
 }
 
 template <typename T>
-Node<T>::~Node() {}
+Node<T>::~Node() = default;
 
 template <typename T>
 T Node<T>::getData() {

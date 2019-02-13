@@ -13,13 +13,12 @@ private:
   T data;
   Node<T> * nextNode;
 public:
-  Node(T data);
+  explicit Node(T data);
   Node(T data, Node<T> * nextNode);
   ~Node();
   T getData();
   void setData(T data);
   Node<T> * getNextNode();
 };
-
 
 #endif //ALGORITHMS_NODE_H

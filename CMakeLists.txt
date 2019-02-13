@@ -4,23 +4,26 @@ project(algorithms)
 set(CMAKE_CXX_STANDARD 14)
 
 # Set the output folder where your program will be created
-set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
+set(CMAKE_LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_LIB_DIR})
+set(LIBRARY_OUTPUT_PATH ${CMAKE_LIB_DIR})
 
 # The following folder will be included
 include_directories("${PROJECT_SOURCE_DIR}")
 
 set(SOURCE_FILES
-  ${PROJECT_SOURCE_DIR}/src/models/node/Node.cpp
+  src/models/node/Node.cpp
+  src/search/binary/BinarySearch.cpp
 )
 
 set(HEADER_FILES
-  ${PROJECT_SOURCE_DIR}/src/models/node/Node.h
+  src/models/node/Node.h
+  src/search/binary/BinarySearch.h
+  src/util/ExecutionTimeLogger.h
 )
 
 add_library(algorithms ${SOURCE_FILES} ${HEADER_FILES})
-add_executable(app ${PROJECT_SOURCE_DIR}/src/main.cpp)
+add_executable(app src/main.cpp)
 target_link_libraries(app algorithms)
 
 ###############################################################################
@@ -50,19 +53,23 @@ if(NOT TARGET Catch)
   )
 
   ExternalProject_Add(Catch-External
-    PREFIX ${CMAKE_BINARY_DIR}/external/Catch
+    PREFIX ${CMAKE_LIB_DIR}/external/Catch
     ${ALG_FETCH_EXTERNAL_CATCH}
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
-    INSTALL_COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/external/Catch/src/Catch-External/single_include/catch.hpp
-    ${CMAKE_BINARY_DIR}/external/Catch/include/catch.hpp
+    INSTALL_COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_LIB_DIR}/external/Catch/src/Catch-External/single_include/catch.hpp
+    ${CMAKE_LIB_DIR}/external/Catch/include/catch.hpp
   )
 
   add_library(Catch INTERFACE)
   add_dependencies(Catch Catch-External)
-  target_include_directories(Catch INTERFACE ${CMAKE_BINARY_DIR}/external/Catch/include)
+  target_include_directories(Catch INTERFACE ${CMAKE_LIB_DIR}/external/Catch/include)
 endif()
 
-add_executable(node-tests ${PROJECT_SOURCE_DIR}/tests/models/NodeTests.cpp)
+add_executable(node-tests tests/models/NodeTests.cpp)
 target_link_libraries(node-tests algorithms Catch)
 add_test(NAME NodeTests COMMAND node-tests)
+
+add_executable(binary-search-tests tests/search/BinarySearchTests.cpp)
+target_link_libraries(binary-search-tests algorithms Catch)
+add_test(NAME BinarySearchTests COMMAND binary-search-tests)

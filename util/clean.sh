@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-rm -rf bin CMakeFiles CMakeScripts Testing cmake_install.cmake CMakeCache.txt CTestTestfile.cmake Makefile cmake-build-debug
+rm -rf bin lib CMakeFiles CMakeScripts Testing cmake_install.cmake CMakeCache.txt
+rm -rf CTestTestfile.cmake Makefile cmake-build-debug algorithms.cbp
