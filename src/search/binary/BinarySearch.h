@@ -8,7 +8,6 @@
 template <typename T>
 class BinarySearch {
 public:
-
   /**
    * Binary search through an array.
    *
@@ -18,7 +17,6 @@ public:
    * @return The index if the value is found, -1 if it isn't.
    */
   int searchArray(T * array, int size, T value);
-
 };
 
 #endif //ALGORITHMS_BINARY_SEARCH_H

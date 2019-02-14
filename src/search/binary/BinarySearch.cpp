@@ -6,7 +6,6 @@
 
 template <typename T>
 int BinarySearch<T>::searchArray(T * array, int size, T value) {
-
   /*
    * Index of the lowest item
    */
