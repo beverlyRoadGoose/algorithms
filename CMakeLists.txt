@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_LIB_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_LIB_DIR})
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 
 # The following folder will be included
 include_directories("${PROJECT_SOURCE_DIR}")
@@ -34,9 +35,11 @@ target_link_libraries(app algorithms)
 
 enable_testing()
 
+include(CodeCoverage)
+
 SET(CMAKE_CXX_FLAGS="-g -O0 -Wall -W -Wshadow -Wunused-variable -Wunused-parameter -Wunused-function -Wunused -Wno-system-headers -Wno-deprecated -Woverloaded-virtual -Wwrite-strings -fprofile-arcs -ftest-coverage")
 SET(CMAKE_C_FLAGS="-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
-SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage -lgcov")
+SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
 
 if($ENV{TRAVIS})
   if($ENV{TRAVIS} STREQUAL "true")
@@ -69,9 +72,9 @@ if(NOT TARGET Catch)
 endif()
 
 add_executable(node-tests tests/models/NodeTests.cpp)
-target_link_libraries(node-tests algorithms Catch gcov)
+target_link_libraries(node-tests algorithms Catch)
 add_test(NAME NodeTests COMMAND node-tests)
 
 add_executable(binary-search-tests tests/search/BinarySearchTests.cpp)
-target_link_libraries(binary-search-tests algorithms Catch gcov)
+target_link_libraries(binary-search-tests algorithms Catch)
 add_test(NAME BinarySearchTests COMMAND binary-search-tests)

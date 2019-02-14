@@ -1,5 +1,6 @@
 /bin
 /lib
+/external
 /build
 /Testing
 /Makefile

@@ -4,5 +4,6 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/bin/external/Catch/src/Catch-External" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/external/Catch/src/Catch-External" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/status" vcs="Git" />
   </component>
 </project>
