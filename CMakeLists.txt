@@ -15,11 +15,15 @@ include_directories("${PROJECT_SOURCE_DIR}")
 set(SOURCE_FILES
   src/models/node/Node.cpp
   src/search/binary/BinarySearch.cpp
+  src/sort/SortingAlgorithm.cpp
+  src/sort/selection/SelectionSort.cpp
 )
 
 set(HEADER_FILES
   src/models/node/Node.h
   src/search/binary/BinarySearch.h
+  src/sort/SortingAlgorithm.h
+  src/sort/selection/SelectionSort.h
   src/util/ExecutionTimeLogger.h
 )
 
@@ -76,3 +80,7 @@ add_test(NAME NodeTests COMMAND node-tests)
 add_executable(binary-search-tests tests/search/BinarySearchTests.cpp)
 target_link_libraries(binary-search-tests algorithms Catch)
 add_test(NAME BinarySearchTests COMMAND binary-search-tests)
+
+add_executable(selection-sort-tests tests/sort/SelectionSortTests.cpp)
+target_link_libraries(selection-sort-tests algorithms Catch)
+add_test(NAME SelectionSortTests COMMAND selection-sort-tests)
