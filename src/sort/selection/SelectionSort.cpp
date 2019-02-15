@@ -4,7 +4,7 @@
 
 #include "SelectionSort.h"
 
-template <typename T>
+template<typename T>
 T * SelectionSort<T>::sortArray(T * array, int size) {
   for (int i = 0; i < size; ++i) {
     int minIndex = i;

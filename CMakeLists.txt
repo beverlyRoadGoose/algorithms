@@ -16,7 +16,6 @@ set(SOURCE_FILES
   src/models/node/Node.cpp
   src/search/binary/BinarySearch.cpp
   src/sort/SortingAlgorithm.cpp
-  src/sort/quick/QuickSort.cpp
   src/sort/selection/SelectionSort.cpp
 )
 
@@ -24,7 +23,6 @@ set(HEADER_FILES
   src/models/node/Node.h
   src/search/binary/BinarySearch.h
   src/sort/SortingAlgorithm.h
-  src/sort/quick/QuickSort.h
   src/sort/selection/SelectionSort.h
   src/util/ExecutionTimeLogger.h
 )
@@ -86,7 +84,3 @@ add_test(NAME BinarySearchTests COMMAND binary-search-tests)
 add_executable(selection-sort-tests tests/sort/SelectionSortTests.cpp)
 target_link_libraries(selection-sort-tests algorithms Catch)
 add_test(NAME SelectionSortTests COMMAND selection-sort-tests)
-
-add_executable(quick-sort-tests tests/sort/QuickSortTests.cpp)
-target_link_libraries(quick-sort-tests algorithms Catch)
-add_test(NAME QuickSortTests COMMAND quick-sort-tests)
